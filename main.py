@@ -23,7 +23,7 @@ if not os.path.exists(model_path):
 
 
 model = insightface.app.FaceAnalysis(name='buffalo_l', providers=['CPUExecutionProvider'])
-model.prepare(ctx_id=-1)
+model.prepare(ctx_id=0)
 swapper = get_model("models/inswapper_128.onnx", providers=["CPUExecutionProvider"], download=False)
 
 # # 前端資源
