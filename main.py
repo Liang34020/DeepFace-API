@@ -16,6 +16,26 @@ import os
 
 app = FastAPI()
 
+import requests
+
+MODEL_URL = "https://www.dropbox.com/scl/fi/68a9l8y9pe1f2iwwgi24q/inswapper_128.onnx?rlkey=598smki7wbygn1ukigocfxc10&st=3hev5ics&dl=1"
+MODEL_PATH = "models/inswapper_128.onnx"
+
+# 自動建立 models 資料夾
+os.makedirs("models", exist_ok=True)
+
+# 若模型不存在就下載
+if not os.path.exists(MODEL_PATH):
+    print("🔽 模型不存在，從 Dropbox 下載中...")
+    response = requests.get(MODEL_URL, stream=True)
+    if response.status_code == 200:
+        with open(MODEL_PATH, "wb") as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+        print("✅ 模型下載完成")
+    else:
+        raise RuntimeError(f"❌ 無法下載模型：HTTP {response.status_code}")
+
 model_path = "models/inswapper_128.onnx"
 
 if not os.path.exists(model_path):
