@@ -19,10 +19,10 @@ app = FastAPI()
 import requests
 
 MODEL_URL = "https://www.dropbox.com/scl/fi/68a9l8y9pe1f2iwwgi24q/inswapper_128.onnx?rlkey=598smki7wbygn1ukigocfxc10&st=3hev5ics&dl=1"
-MODEL_PATH = "models/inswapper_128.onnx"
+MODEL_PATH = "Models/inswapper_128.onnx"
 
 # 自動建立 models 資料夾
-os.makedirs("models", exist_ok=True)
+os.makedirs("Models", exist_ok=True)
 
 # 若模型不存在就下載
 if not os.path.exists(MODEL_PATH):
@@ -36,7 +36,7 @@ if not os.path.exists(MODEL_PATH):
     else:
         raise RuntimeError(f"❌ 無法下載模型：HTTP {response.status_code}")
 
-model_path = "models/inswapper_128.onnx"
+model_path = "Models/inswapper_128.onnx"
 
 if not os.path.exists(model_path):
     raise FileNotFoundError(f"Model not found at {model_path}. Please ensure the file exists.")
@@ -44,7 +44,7 @@ if not os.path.exists(model_path):
 
 model = insightface.app.FaceAnalysis(name='buffalo_l', providers=['CPUExecutionProvider'])
 model.prepare(ctx_id=-1)
-swapper = get_model("models/inswapper_128.onnx", providers=["CPUExecutionProvider"], download=False)
+swapper = get_model("Models/inswapper_128.onnx", providers=["CPUExecutionProvider"], download=False)
 
 # # 前端資源
 # app.mount("/static", StaticFiles(directory="static"), name="static")
