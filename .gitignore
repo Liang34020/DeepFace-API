@@ -19,3 +19,5 @@ env/
 
 # Log files
 *.log
+
+models/
