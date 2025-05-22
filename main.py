@@ -5,6 +5,15 @@ from fastapi.responses import StreamingResponse
 # from fastapi.responses import HTMLResponse
 # from fastapi.staticfiles import StaticFiles
 # from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5500"],  # 或指定 ["http://localhost:5500"]（本地開發）、正式網站網址
+    allow_credentials=True,
+    allow_methods=[""],
+    allow_headers=["*"],
+)
 
 import io
 import cv2
