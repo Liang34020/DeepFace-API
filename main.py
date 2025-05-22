@@ -7,13 +7,7 @@ from fastapi.responses import StreamingResponse
 # from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["https://web-production-62d42.up.railway.app"],  # 或指定 ["http://localhost:5500"]（本地開發）、正式網站網址
-    allow_credentials=True,
-    allow_methods=[""],
-    allow_headers=["*"],
-)
+
 
 import io
 import cv2
@@ -25,6 +19,13 @@ import os
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://web-production-62d42.up.railway.app"],  # 或指定 ["http://localhost:5500"]（本地開發）、正式網站網址
+    allow_credentials=True,
+    allow_methods=[""],
+    allow_headers=["*"],
+)
 import requests
 
 MODEL_URL = "https://www.dropbox.com/scl/fi/68a9l8y9pe1f2iwwgi24q/inswapper_128.onnx?rlkey=598smki7wbygn1ukigocfxc10&st=3hev5ics&dl=1"
