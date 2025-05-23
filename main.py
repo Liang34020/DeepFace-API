@@ -21,7 +21,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://web-production-62d42.up.railway.app"],  # 或指定 ["http://localhost:5500"]（本地開發）、正式網站網址
+    allow_origins=["https://web-production-62d42.up.railway.app/process-images/"],  # 或指定 ["http://localhost:5500"]（本地開發）、正式網站網址
     allow_credentials=True,
     allow_methods=[""],
     allow_headers=["*"],
